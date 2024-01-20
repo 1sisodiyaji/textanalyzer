@@ -17,6 +17,23 @@ export default function TextForm(props) {
     setText(newText);
   };
 
+  const listenText = () => {
+    let speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    window.speechSynthesis.speak(speech);
+  };
+
+  const convertToCamelCaseWithSpaces = () => {
+    let words = text.split(' ');
+    for (let i = 1; i < words.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+    let newText = words.join(' ');
+  
+   setText(newText);
+  }
+
+
   const validemail = () => {
     function isValidEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -86,6 +103,15 @@ export default function TextForm(props) {
         <button className="btn btn-success mx-1 my-1 text-capitalize btn-sm " onClick={handleLoClick}>
           Convert to Lowercase
         </button>
+        <button className="btn btn-success border mx-1 my-1 text-capitalize btn-sm " onClick={convertToCamelCaseWithSpaces}>
+           Camel Casing 
+        </button>
+        <button
+            className="btn btn-success mx-1 my-1 text-capitalize btn-sm "
+            onClick={listenText}
+          >
+            Listen
+          </button>
         <button className="btn btn-success mx-1 my-1 text-capitalize btn-sm " onClick={validemail}>
           Email Testing
         </button>
@@ -97,11 +123,11 @@ export default function TextForm(props) {
       <div className="container my-3 text-light">
         <h2>Your text summary</h2>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text.split(" ").filter((Element) => {return Element.length !== 0}).length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>{0.008 * text.split(" ").filter((Element) => {return Element.length !== 0 }).length} Minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "nothing to preview . Please write Something"}</p>
       </div>
     </>
   );

@@ -63,20 +63,7 @@ function NavBar() {
                 </a>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <button className="btn btn-sm shadow-0">
-              <img src="https://cdn3.iconfinder.com/data/icons/meteocons/512/sun-symbol-512.png" className="me-3" style={{height : "40px"}} onClick={toggleDarkMode()} alt="" />
-              </button>
-
-              <MDBDropdown>
-                <MDBDropdownToggle className="bg-dark text-light border border-success shadow-6" >More</MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem link>Text</MDBDropdownItem>
-                  <MDBDropdownItem link>Code</MDBDropdownItem>
-                  <MDBDropdownItem link>Future</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </form>
+            
           </div>
         </div>
       </nav>
